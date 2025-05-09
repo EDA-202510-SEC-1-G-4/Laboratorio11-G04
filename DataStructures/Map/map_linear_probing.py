@@ -9,7 +9,7 @@ def new_map(num, factores=0.5, primo=109345121):
     mapa["scale"] = 1
     mapa["shift"] = 0
     mapa["table"] = al.new_list()
-    for i in range (num+1):
+    for i in range(mapa['capacity']):
         al.add_last(mapa["table"],{"key": None, "value": None})
 
     mapa["limit_factor"]= factores
@@ -18,7 +18,7 @@ def new_map(num, factores=0.5, primo=109345121):
     return mapa
 
 def default_compare(key, entry):
-   if entry is not None:
+   if entry is not None and me.get_key(entry) is not None:
         if key == me.get_key(entry):
             return 0
         elif key > me.get_key(entry):
