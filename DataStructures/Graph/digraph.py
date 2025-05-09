@@ -3,8 +3,9 @@ from DataStructures.Graph import vertex
 from DataStructures.Map import map_linear_probing as mp
 
 def new_graph(order):
-    graph = {'vertices':'A'}
-    return 
+    graph = {'vertices':mp.new_map(order),
+             'edges':0}
+    return graph
 
 def insert_vertex():
     return
