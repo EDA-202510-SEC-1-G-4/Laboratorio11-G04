@@ -179,31 +179,49 @@ def shell_sort(list,default_sort_criteria):
     # NO funciona selection correctamente, por ahora no se puede usar cuando h=1  
     return list
  
-def merge_sort(my_list):
-    if my_list['size'] == 1:
-        return my_list
-    if my_list['size'] == 2:
-        if my_list['elements'][0] > my_list['elements'][1]:
-            my_list['elements'][0], my_list['elements'][1] = my_list['elements'][1], my_list['elements'][0]
-        return my_list
-    mitad = my_list['size']//2
-    lista1 = {}
-    lista2 = {}
-    lista1['elements'] = my_list['elements'][0:mitad]
-    lista2['elements'] = my_list['elements'][mitad:my_list['size']]
-    lista1['size'] = mitad
-    lista2['size'] = mitad
-    if my_list['size']%2 != 0:
-        lista2['size'] = mitad+1
-    mitad1 = merge_sort(lista1)
-    mitad2 = merge_sort(lista2) 
-    if mitad2 != None:    
-        my_list['elements'] = mitad1['elements'] + mitad2['elements']
-    else:
-        mitad2 = {}
-        mitad2['elements'] = []
-        my_list['elements'] = mitad1['elements'] + mitad2['elements']
-    return my_list
+def merge_sort(my_list, cmp_function):
+    if my_list['size'] <= 1:
+        return my_list  # Si la lista tiene 0 o 1 elementos, ya está ordenada.
+
+
+    mitad = my_list['size'] // 2
+    lista1 = {'elements': my_list['elements'][0:mitad], 'size': mitad}
+    lista2 = {'elements': my_list['elements'][mitad:], 'size': my_list['size'] - mitad}
+
+
+    # Llamar a merge_sort recursivamente con la función de comparación
+    lista1 = merge_sort(lista1, cmp_function)
+    lista2 = merge_sort(lista2, cmp_function)
+
+
+    return merge_sorted_arrays(lista1, lista2, cmp_function)
+
+
+def merge_sorted_arrays(lista1, lista2, cmp_function):
+    resultado = {'elements': [], 'size': lista1['size'] + lista2['size']}
+    i, j = 0, 0
+
+
+    while i < lista1['size'] and j < lista2['size']:
+        if cmp_function(lista1['elements'][i], lista2['elements'][j]) == True:
+            resultado['elements'].append(lista1['elements'][i])
+            i += 1
+        else:
+            resultado['elements'].append(lista2['elements'][j])
+            j += 1
+
+
+    while i < lista1['size']:
+        resultado['elements'].append(lista1['elements'][i])
+        i += 1
+
+
+    while j < lista2['size']:
+        resultado['elements'].append(lista2['elements'][j])
+        j += 1
+
+
+    return resultado
 
 def quick_sort(list,default_sort_criteria,lo,hi):
     
