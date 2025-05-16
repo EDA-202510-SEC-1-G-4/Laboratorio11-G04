@@ -11,28 +11,18 @@ def insert_vertex(): #jecheverry
     return
 
 def update_vertex_info(graph,key,info): #da.rincon
+
+    map = graph["vertices"]
+    vertice = mp.get(map,key)
+    vertex.set_value(vertice,info)
     
-    return
+    return graph
 
 def remove_vertex(): #jecheverry
     return
 
-def add_edge(graph, key_u, key_v, weight=1.0):#ncastano
-    
-    if not mp.contains(graph['vertices'], key_u):
-        return KeyError("Vertex not found")
-        
-    if not mp.contains(graph['vertices'], key_v):
-        return KeyError("Vertex not found")
-
-    if key_u and key_v in graph['vertices']:
-        u = mp.get(graph['vertices'], key_u)
-        v = mp.get(graph['vertices'], key_v)
-        e = edge.new_edge(u, v, weight)
-        u.add_edge(e)
-        v.add_edge(e)
-        graph['edges'] += 1
-    return graph
+def add_edge():
+    return
 
 def order():
     return
