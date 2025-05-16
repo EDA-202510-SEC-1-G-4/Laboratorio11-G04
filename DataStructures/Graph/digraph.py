@@ -4,13 +4,14 @@ from DataStructures.Map import map_linear_probing as mp
 
 def new_graph(order):
     graph = {'vertices':mp.new_map(order),
-             'edges':0}
+             'num_edges':0}
     return graph
 
 def insert_vertex(): #jecheverry
     return
 
-def update_vertex_info():
+def update_vertex_info(graph,key,info): #da.rincon
+    
     return
 
 def remove_vertex(): #jecheverry
