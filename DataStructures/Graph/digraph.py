@@ -14,8 +14,10 @@ def insert_vertex(graph,key,info):
     return graph
 
 def update_vertex_info(graph,key,info): #da.rincon
-    
-    return
+    vertices = graph["vertices"]
+    vertice = mp.get(vertices,key)
+    vertex.set_value(vertice,info)
+    return graph
 
 def remove_vertex(graph,key):
     if graph != None and key != None:
