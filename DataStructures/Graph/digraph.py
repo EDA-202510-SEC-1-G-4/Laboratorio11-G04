@@ -14,8 +14,10 @@ def insert_vertex(graph,key,info):
     return graph
 
 def update_vertex_info(graph,key,info): #da.rincon
-    
-    return
+    vertices = graph["vertices"]
+    vertice = mp.get(vertices,key)
+    vertex.set_value(vertice,info)
+    return graph
 
 def remove_vertex(graph,key):
     if graph != None and key != None:
@@ -36,7 +38,7 @@ def add_edge(graph, key_u, key_v, weight=1.0):#ncastano
     if not mp.contains(graph['vertices'], key_v):
         raise Exception("Vertex not found")
 
-    if key_u and key_v in graph['vertices']:
+    if key_u in graph['vertices'] and key_v in graph['vertices']:
         u = mp.get(graph['vertices'], key_u)
         v = mp.get(graph['vertices'], key_v)
         e = edge.new_edge(u, v, weight)
@@ -45,8 +47,14 @@ def add_edge(graph, key_u, key_v, weight=1.0):#ncastano
         graph['edges'] += 1
     return graph
 
-def order():
-    return
+def order(graph):
+    vertices = mp.size(graph['vertices'])
+    if vertices == 0:
+        raise Exception("Graph is empty")
+    if vertices > 0:
+        return int(vertices)
+        
+    return vertices.s
 
 def size():
     return
