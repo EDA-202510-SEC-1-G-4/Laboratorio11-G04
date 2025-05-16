@@ -7,15 +7,26 @@ def new_graph(order):
              'num_edges':0}
     return graph
 
-def insert_vertex(): #jecheverry
-    return
+def insert_vertex(graph,key,info):
+    if key != None and graph != None:
+        nodo = vertex.new_vertex(key,info)
+        graph['vertices'] = mp.put(graph['vertices'],key,nodo)
+    return graph
 
 def update_vertex_info(graph,key,info): #da.rincon
     
     return
 
-def remove_vertex(): #jecheverry
-    return
+def remove_vertex(graph,key):
+    if graph != None and key != None:
+        info_eliminado = mp.get(graph['vertices'],key) 
+        adj_elim = mp.key_set(info_eliminado['adjacents'])
+        for adj in adj_elim:
+            info_adj = mp.get(graph['vertices'],adj)
+            info_adj['adjacents'] = mp.remove(graph['adjacents'],key)
+            graph['edges'] -= 1
+        graph['vertices'] = mp.remove(graph['vertices'],key)
+    return graph
 
 def add_edge(graph, key_u, key_v, weight=1.0):#ncastano
     
