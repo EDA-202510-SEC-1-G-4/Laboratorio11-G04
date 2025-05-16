@@ -20,10 +20,10 @@ def remove_vertex(): #jecheverry
 def add_edge(graph, key_u, key_v, weight=1.0):#ncastano
     
     if not mp.contains(graph['vertices'], key_u):
-        return KeyError("Vertex not found")
+        raise Exception("Vertex not found")
         
     if not mp.contains(graph['vertices'], key_v):
-        return KeyError("Vertex not found")
+        raise Exception("Vertex not found")
 
     if key_u and key_v in graph['vertices']:
         u = mp.get(graph['vertices'], key_u)
