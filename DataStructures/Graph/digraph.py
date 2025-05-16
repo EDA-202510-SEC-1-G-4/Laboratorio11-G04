@@ -54,7 +54,7 @@ def order(graph):
     if vertices > 0:
         return int(vertices)
         
-    return vertices.s
+    return vertices
 
 def size():
     return
