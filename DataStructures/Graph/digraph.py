@@ -4,7 +4,7 @@ from DataStructures.Map import map_linear_probing as mp
 
 def new_graph(order):
     graph = {'vertices':mp.new_map(order),
-             'edges':0}
+             'num_edges':0}
     return graph
 
 def insert_vertex(graph,key,info):
@@ -12,7 +12,8 @@ def insert_vertex(graph,key,info):
         graph['vertices'] = mp.put(graph['vertices'],key,info)
     return graph
 
-def update_vertex_info():
+def update_vertex_info(graph,key,info): #da.rincon
+    
     return
 
 def remove_vertex(graph,key):
@@ -26,8 +27,22 @@ def remove_vertex(graph,key):
         graph['vertices'] = mp.remove(graph['vertices'],key)
     return graph
 
-def add_edge():
-    return
+def add_edge(graph, key_u, key_v, weight=1.0):#ncastano
+    
+    if not mp.contains(graph['vertices'], key_u):
+        raise Exception("Vertex not found")
+        
+    if not mp.contains(graph['vertices'], key_v):
+        raise Exception("Vertex not found")
+
+    if key_u and key_v in graph['vertices']:
+        u = mp.get(graph['vertices'], key_u)
+        v = mp.get(graph['vertices'], key_v)
+        e = edge.new_edge(u, v, weight)
+        u.add_edge(e)
+        v.add_edge(e)
+        graph['edges'] += 1
+    return graph
 
 def order():
     return
