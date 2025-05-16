@@ -7,13 +7,13 @@ def new_graph(order):
              'edges':0}
     return graph
 
-def insert_vertex():
+def insert_vertex(): #jecheverry
     return
 
 def update_vertex_info():
     return
 
-def remove_vertex():
+def remove_vertex(): #jecheverry
     return
 
 def add_edge():
@@ -37,14 +37,14 @@ def get_edge():
 def get_vertex_information():
     return
 
-def contains_vertex():
+def contains_vertex(): #Jecheverry
     return
 
-def adjacents():
+def adjacents(): #jecheverry
     return
 
 def edges_vertex():
     return
 
-def get_vertex():
+def get_vertex(): #jecheverry
     return
