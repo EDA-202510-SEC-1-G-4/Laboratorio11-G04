@@ -33,18 +33,20 @@ def remove_vertex(graph,key):
 def add_edge(graph, key_u, key_v, weight=1.0):#ncastano
     
     if not mp.contains(graph['vertices'], key_u):
-        raise Exception("Vertex not found")
+        raise Exception("El vertice no existe")
         
     if not mp.contains(graph['vertices'], key_v):
-        raise Exception("Vertex not found")
+        raise Exception("El vertice no existe")
 
-    if key_u in graph['vertices'] and key_v in graph['vertices']:
-        u = mp.get(graph['vertices'], key_u)
-        v = mp.get(graph['vertices'], key_v)
-        e = edge.new_edge(u, v, weight)
-        u.add_edge(e)
-        v.add_edge(e)
-        graph['edges'] += 1
+    u = mp.get(graph['vertices'], key_u)
+    existe = mp.contains(u['adjacents'], key_v)
+    e = edge.new_edge(key_v, weight)
+    
+    u['adjacents'] = mp.put(u['adjacents'], key_v, e)
+    
+    if not existe:
+        graph['num_edges'] += 1
+    
     return graph
 
 def order(graph):
@@ -57,6 +59,7 @@ def order(graph):
     return vertices
 
 def size():
+    
     return
 
 def vertices():
