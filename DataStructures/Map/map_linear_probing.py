@@ -5,7 +5,9 @@ from DataStructures.Map import map_entry as me
 def new_map(num, factores=0.5, primo=109345121):
     mapa = {}
     mapa["prime"] = primo
-    mapa["capacity"] = mp.next_prime(num*2) 
+    mapa["capacity"] = mp.next_prime(num*2)
+    if mapa['capacity'] == 0:
+        mapa['capacity'] = mp.next_prime(6) 
     mapa["scale"] = 1
     mapa["shift"] = 0
     mapa["table"] = al.new_list()
