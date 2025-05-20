@@ -24,8 +24,7 @@ def remove_vertex(graph,key):
         info_eliminado = mp.get(graph['vertices'],key) 
         adj_elim = mp.key_set(info_eliminado['adjacents'])
         for adj in adj_elim:
-            info_adj = mp.get(graph['vertices'],adj)
-            info_adj['adjacents'] = mp.remove(info_adj['adjacents'],key)
+            mp.remove(mp.get(graph['vertices'],adj)['adjacents'],key)
             graph['edges'] -= 1
         graph['vertices'] = mp.remove(graph['vertices'],key)
     return graph
