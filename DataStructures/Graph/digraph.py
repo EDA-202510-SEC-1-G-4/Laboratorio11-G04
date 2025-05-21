@@ -29,7 +29,7 @@ def remove_vertex(graph,key):
         graph['vertices'] = mp.remove(graph['vertices'],key)
     return graph
 
-def add_edge(graph, key_u, key_v, weight=1.0):#ncastano
+def add_edge(graph, key_u, key_v, weight=1.0):#ncastano que hizo 
     
     if not mp.contains(graph['vertices'], key_u):
         raise Exception("El vertice no existe")
@@ -50,16 +50,13 @@ def add_edge(graph, key_u, key_v, weight=1.0):#ncastano
 
 def order(graph):
     vertices = mp.size(graph['vertices'])
-    if vertices == 0:
-        raise Exception("Graph is empty")
-    if vertices > 0:
-        return int(vertices)
-        
+    
     return vertices
 
-def size():
+def size(graph):
+    tamano = graph['num_edges'] 
+    return tamano
     
-    return
 
 def vertices():
     return
