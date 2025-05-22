@@ -79,7 +79,7 @@ def get_edge(graph, key_u, key_v):
         if edge['target'] == key_v:
             return edge
     
-    return NotImplementedError
+    return None
 
 def get_vertex_information():
     return
