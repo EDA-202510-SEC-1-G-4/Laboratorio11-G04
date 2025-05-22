@@ -50,15 +50,11 @@ def add_edge(graph, key_u, key_v, weight=1.0):#ncastano que hizo
 
 def order(graph): #tranca
     vertices = mp.size(graph['vertices'])
-    
     return vertices
 
 def size(graph):
     tamano = graph['num_edges'] 
     return tamano
-
-
-    
 
 def vertices(graph):
     vertices = graph["vertices"]
@@ -79,8 +75,13 @@ def get_edge():
 def get_vertex_information():
     return
 
-def contains_vertex(): #Jecheverry
-    return
+def contains_vertex(graph,key):
+    vertices = graph['vertices']  
+    existe = False
+    nodo = mp.get(vertices,key)
+    if nodo != None:
+        existe = True
+    return existe
 
 def adjacents(): #jecheverry
     return
