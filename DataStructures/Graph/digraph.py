@@ -48,7 +48,7 @@ def add_edge(graph, key_u, key_v, weight=1.0):#ncastano que hizo
     
     return graph
 
-def order(graph):
+def order(graph): #tranca
     vertices = mp.size(graph['vertices'])
     
     return vertices
