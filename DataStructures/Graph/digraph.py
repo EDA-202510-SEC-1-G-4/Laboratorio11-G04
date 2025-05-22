@@ -107,8 +107,19 @@ def adjacents(graph,key):
         adj = mp.key_set(nodo['adjacents'])
     return adj
 
-def edges_vertex():
-    return
+def edges_vertex(graph,key_u):
+    vertex = mp.get(graph["vertices"], key_u)
+    if vertex is None:
+        raise Exception("El vertice no existe")
+    
+    adjacents_map = vertex["adjacents"]
+    
+    entries = mp.get_all(adjacents_map)
+    
+
+    edges = [entry[1] for entry in entries] 
+    
+    return edges
 
 def get_vertex(graph,key):
     vertices = graph['vertices']
