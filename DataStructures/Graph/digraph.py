@@ -81,8 +81,13 @@ def get_edge(graph, key_u, key_v):
     
     return None
 
-def get_vertex_information():
-    return
+def get_vertex_information(graph, key_u):
+    vertex = mp.get(graph["vertices"], key_u)
+    
+    if vertex is None:
+        raise Exception("El vertice no existe")
+    
+    return vertex["value"]
 
 def contains_vertex(graph,key):
     vertices = graph['vertices']  
