@@ -1,6 +1,7 @@
 from DataStructures.Graph import edge
 from DataStructures.Graph import vertex
 from DataStructures.Map import map_linear_probing as mp
+from DataStructures.List import array_list as al
 
 def new_graph(order):
     graph = {'vertices':mp.new_map(order),
@@ -83,8 +84,15 @@ def contains_vertex(graph,key):
         existe = True
     return existe
 
-def adjacents(): #jecheverry
-    return
+def adjacents(graph,key):
+    vertices = graph['vertices']
+    nodo = mp.get(vertices,key)
+    adj = al.new_list()
+    if nodo == None:
+        raise Exception("El vertice no existe.")
+    else:
+        adj = mp.key_set(nodo['adjacents'])
+    return adj
 
 def edges_vertex():
     return
