@@ -97,5 +97,9 @@ def adjacents(graph,key):
 def edges_vertex():
     return
 
-def get_vertex(): #jecheverry
-    return
+def get_vertex(graph,key):
+    vertices = graph['vertices']
+    node = mp.get(vertices,key)
+    if node == None:
+        raise Exception("El vertice no existe.")
+    return node
