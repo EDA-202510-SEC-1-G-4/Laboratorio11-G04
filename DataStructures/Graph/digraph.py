@@ -56,13 +56,22 @@ def order(graph): #tranca
 def size(graph):
     tamano = graph['num_edges'] 
     return tamano
+
+
     
 
-def vertices():
-    return
+def vertices(graph):
+    vertices = graph["vertices"]
+    retorno = mp.key_set(vertices)
+    return retorno
 
-def degree():
-    return
+def degree(graph,key_u):
+    if not mp.contains(graph["vertices"],key_u):
+        raise Exception("El vertice no existe")
+    else:
+        vertice = mp.get(graph["vertices"],key_u)
+        retorno = mp.size(vertice["adjacents"])
+    return retorno
 
 def get_edge():
     return
