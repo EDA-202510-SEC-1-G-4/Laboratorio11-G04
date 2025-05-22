@@ -113,10 +113,7 @@ def edges_vertex(graph,key_u):
         raise Exception("El vertice no existe")
     
     adjacents_map = vertex["adjacents"]
-    
-    entries = mp.get_all(adjacents_map)
-    
-
+    entries = mp.get(adjacents_map)
     edges = [entry[1] for entry in entries] 
     
     return edges
