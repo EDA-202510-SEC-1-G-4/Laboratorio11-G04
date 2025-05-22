@@ -69,8 +69,17 @@ def degree(graph,key_u):
         retorno = mp.size(vertice["adjacents"])
     return retorno
 
-def get_edge():
-    return
+def get_edge(graph, key_u, key_v):
+    if key_u not in graph['vertices']:
+        raise Exception("El vertice u no existe")
+    
+    vertex_u = graph['vertices'][key_u]
+    
+    for edge in vertex_u['out_edges']:
+        if edge['target'] == key_v:
+            return edge
+    
+    return NotImplementedError
 
 def get_vertex_information():
     return
