@@ -54,8 +54,7 @@ def order(graph): #tranca
     return vertices
 
 def size(graph):
-    tamano = graph['num_edges'] 
-    return tamano
+    return graph['num_edges']
 
 def vertices(graph):
     vertices = graph["vertices"]
