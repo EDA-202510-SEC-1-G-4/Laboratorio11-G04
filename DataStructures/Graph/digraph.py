@@ -19,7 +19,6 @@ def update_vertex_info(graph,key,info): #da.rincon
     vertice = mp.get(vertices,key)
     vertex.set_value(vertice,info)
     return graph
-
 def remove_vertex(graph,key):
     if graph != None and key != None:
         info_eliminado = mp.get(graph['vertices'],key) 
