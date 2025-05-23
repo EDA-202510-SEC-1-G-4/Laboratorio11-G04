@@ -1,15 +1,23 @@
 from DataStructures.Graph import digraph as G
-
-# Crea un grafo vacio
+from DataStructures.Graph import dfs as DFS
+# Crear un grafo vacío
 my_graph = G.new_graph(1)
- 
- # Inserta vertices
-my_graph = G.insert_vertex(my_graph, "Armenia", {"nombre": "Armenia", "poblacion": 300000})
-my_graph = G.insert_vertex(my_graph, "Bogota", {"nombre": "Bogota", "poblacion": 8000000})
-my_graph = G.insert_vertex(my_graph, "Cali", {"nombre": "Cali", "poblacion": 2000000})
 
-# Inserta un arco
-my_graph = G.add_edge(my_graph, "Armenia", "Bogota", 100)
-my_graph = G.add_edge(my_graph, "Armenia", "Cali", 200)
+# Insertar vértices
+my_graph = G.insert_vertex(my_graph, "Bogota", {})
+my_graph = G.insert_vertex(my_graph, "Medellin", {})
+my_graph = G.insert_vertex(my_graph, "Cali", {})
+my_graph = G.insert_vertex(my_graph, "Barranquilla", {})
 
-print(G.degree(my_graph, "Armenia"))
+# Agregar arcos (dirigidos)
+my_graph = G.add_edge(my_graph, "Bogota", "Medellin", 1)
+my_graph = G.add_edge(my_graph, "Medellin", "Cali", 1)
+my_graph = G.add_edge(my_graph, "Cali", "Barranquilla", 1)
+
+# Ejecutar DFS desde "Bogota"
+dfs_result = DFS.dfs(my_graph, "Bogota")
+
+# Mostrar los resultados del recorrido
+print("Preorden:", dfs_result["pre"]["elements"])
+print("Postorden:", dfs_result["post"]["elements"])
+print("Reverse postorden (pila):", dfs_result["reversepost"]["elements"])
