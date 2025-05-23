@@ -38,11 +38,10 @@ def add_edge(graph, key_u, key_v, weight=1.0):#ncastano que hizo
     if not mp.contains(graph['vertices'], key_v):
         raise Exception("El vertice no existe")
 
-    u = mp.get(graph['vertices'], key_u)
-    existe = mp.contains(u['adjacents'], key_v)
+    existe = mp.contains(mp.get(graph['vertices'], key_u)['adjacents'], key_v)
     e = edge.new_edge(key_v, weight)
     
-    u['adjacents'] = mp.put(u['adjacents'], key_v, e)
+    mp.put(mp.get(graph['vertices'], key_u)['adjacents'], key_v, e)
     
     if not existe:
         graph['num_edges'] += 1
