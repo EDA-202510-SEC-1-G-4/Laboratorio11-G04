@@ -125,7 +125,6 @@ def set_station(analyzer, station):
         station = str(station)
         vertex = G.get_vertex(analyzer['connections'], station)
         if vertex is not None:
-            # TODO IMPLEMENTADO CON NUESTRA VERSIÓN DE DIJKSTRA
             distancias, caminos = ds(convert_to_dictionary(analyzer['connections']), station)
             analyzer['paths'] = {
                 'distances': distancias,
@@ -151,6 +150,7 @@ def convert_to_dictionary(graph):
             weight = G.get_edge(graph, vertex, edge)['weight']
             graph_dict[vertex][edge] = weight
     return graph_dict
+#----------------------------------------------------
 #  Funciones para consultas
 # ___________________________________________________
 
