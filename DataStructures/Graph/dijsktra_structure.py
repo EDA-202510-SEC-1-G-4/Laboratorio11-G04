@@ -23,51 +23,48 @@ def new_dijsktra_structure(source, g_order):
         "pq": pq.new_heap()}
     return structure
 
-def dijkstra(my_graph, source):
+def dijkstra(grafo, source):
+    distancias = {}
+    caminos = {}
+    visitados = []
     
-    if not mp.contains(my_graph['vertices'], source):
-        raise Exception("El vértice fuente no existe en el grafo")
+    # Inicializar distancias y caminos
+    for nodo in grafo:
+        distancias[nodo] = float('inf')
+        caminos[nodo] = []
+    distancias[source] = 0
+    caminos[source] = [source]
     
-
-    g_order = mp.size(my_graph['vertices'])
-    search_struct = new_dijsktra_structure(source, g_order)
+    # Cola simple (versión menos eficiente que PriorityQueue)
+    cola = [source]
     
-    dist_to = mp.new_map(g_order, 0.5)
-    edge_to = mp.new_map(g_order, 0.5)
-    for vertex in mp.key_set(my_graph['vertices']):
-        mp.put(dist_to, vertex, float('inf'))
-        mp.put(search_struct['visited'], vertex, False)
-    
-    mp.put(dist_to, source, 0)
-    pq.insert(search_struct['pq'], source, 0)
-    
-    while not pq.is_empty(search_struct['pq']):
-        current_vertex = pq.del_min(search_struct['pq'])
+    while len(cola) > 0:
+        # Encontrar nodo con menor distancia en la cola
+        nodo_actual = None
+        min_dist = float('inf')
+        for nodo in cola:
+            if distancias[nodo] < min_dist:
+                min_dist = distancias[nodo]
+                nodo_actual = nodo
         
-        if mp.get(search_struct['visited'], current_vertex):
-            continue
+        cola.remove(nodo_actual)
+        visitados.append(nodo_actual)
         
-        mp.put(search_struct['visited'], current_vertex, True)
-        
-        vertex = mp.get(my_graph['vertices'], current_vertex)
-        adjacents = mp.key_set(vertex['adjacents'])
-        
-        for neighbor in adjacents:
-            edge = mp.get(vertex['adjacents'], neighbor)
-            new_dist = mp.get(dist_to, current_vertex) + edge['weight']
+        # Explorar vecinos
+        vecinos = grafo[nodo_actual]
+        for vecino in vecinos:
+            peso = grafo[nodo_actual][vecino]
+            nueva_distancia = distancias[nodo_actual] + peso
             
-            if new_dist < mp.get(dist_to, neighbor):
-                mp.put(dist_to, neighbor, new_dist)
-                mp.put(edge_to, neighbor, current_vertex)
-                pq.insert(search_struct['pq'], neighbor, new_dist)
+            if nueva_distancia < distancias[vecino]:
+                distancias[vecino] = nueva_distancia
+                caminos[vecino] = caminos[nodo_actual] + [vecino]
+                
+                if vecino not in visitados and vecino not in cola:
+                    cola.append(vecino)
     
-    result = search_struct.copy()
-    result.update({
-        'dist_to': dist_to,
-        'edge_to': edge_to
-    })
+    return distancias, caminos   
     
-    return result
 
 
 def dist_to(key_v, aux_structure):

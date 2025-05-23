@@ -31,7 +31,7 @@
 from DataStructures.List import single_linked_list as lt
 from DataStructures.Map import map_linear_probing as m
 from DataStructures.Graph import digraph as G
-
+from DataStructures.Graph import dijsktra_structure as ds
 import csv
 import time
 import os
@@ -125,13 +125,32 @@ def set_station(analyzer, station):
         station = str(station)
         vertex = G.get_vertex(analyzer['connections'], station)
         if vertex is not None:
-        # TODO: Llame a la ejecucion de Dijkstra desde la estacion
-        # base para calcular los caminos de costo minimo
-            analyzer['paths'] = dijkstra(analyzer['connections'], station)
+            distancias, caminos = ds(convert_to_dictionary(analyzer['connections']), station)
+            analyzer['paths'] = {
+                'distances': distancias,
+                'paths': caminos
+            }
             return True
         else:
             return False
-# ___________________________________________________
+    except Exception as exp:
+        raise Exception(f"Error al configurar estación base: {str(exp)}")
+    
+    
+def convert_to_dictionary(graph):
+    """
+    Convierte el grafo en un diccionario para usar en el algoritmo de Dijkstra.
+    """
+    graph_dict = {}
+    vertices = G.vertices(graph)
+    for vertex in vertices:
+        graph_dict[vertex] = {}
+        edges = G.adjacents(graph, vertex)
+        for edge in edges:
+            weight = G.get_edge(graph, vertex, edge)['weight']
+            graph_dict[vertex][edge] = weight
+    return graph_dict
+#----------------------------------------------------
 #  Funciones para consultas
 # ___________________________________________________
 
