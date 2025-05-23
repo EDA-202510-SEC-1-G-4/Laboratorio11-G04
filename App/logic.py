@@ -125,15 +125,32 @@ def set_station(analyzer, station):
         station = str(station)
         vertex = G.get_vertex(analyzer['connections'], station)
         if vertex is not None:
-            # Implementación del TODO:
-
-            analyzer['paths'] = ds(analyzer['connections'], station)
+            # TODO IMPLEMENTADO CON NUESTRA VERSIÓN DE DIJKSTRA
+            distancias, caminos = ds(convert_to_dictionary(analyzer['connections']), station)
+            analyzer['paths'] = {
+                'distances': distancias,
+                'paths': caminos
+            }
             return True
         else:
             return False
     except Exception as exp:
-        return exp
-# ___________________________________________________
+        raise Exception(f"Error al configurar estación base: {str(exp)}")
+    
+    
+def convert_to_dictionary(graph):
+    """
+    Convierte el grafo en un diccionario para usar en el algoritmo de Dijkstra.
+    """
+    graph_dict = {}
+    vertices = G.vertices(graph)
+    for vertex in vertices:
+        graph_dict[vertex] = {}
+        edges = G.adjacents(graph, vertex)
+        for edge in edges:
+            weight = G.get_edge(graph, vertex, edge)['weight']
+            graph_dict[vertex][edge] = weight
+    return graph_dict
 #  Funciones para consultas
 # ___________________________________________________
 
