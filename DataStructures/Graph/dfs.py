@@ -1,7 +1,6 @@
 from DataStructures.List import array_list as al
 from DataStructures.Stack import stack as s
 from DataStructures.Graph import digraph as G
-from DataStructures.Graph import vertex as V
 
 def dfs(grafo,source):
     visited = al.new_list()
