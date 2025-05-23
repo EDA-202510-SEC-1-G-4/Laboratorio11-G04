@@ -10,7 +10,7 @@ def bfs(grafo,source):
         elem = q.dequeue(queue)
         if elem not in visited['elements']:
             al.add_last(visited,elem)
-            for nodo in G.adjacents(grafo,source)['elements']:
+            for nodo in G.adjacents(grafo,elem)['elements']:
                 if nodo not in visited['elements']:
                     q.enqueue(queue,nodo)
     return visited
