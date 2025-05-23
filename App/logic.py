@@ -123,19 +123,14 @@ def set_station(analyzer, station):
     """
     try:
         station = str(station)
-        # Obtener el grafo dirigido de conexiones del analyzer
-        digraph = analyzer['connections']
-        
-        # Verificar si el vértice existe en el grafo
-        vertex = G.get_vertex(digraph, station)
+        vertex = G.get_vertex(analyzer['connections'], station)
         if vertex is not None:
-            # Ejecutar Dijkstra desde la estación base
-            analyzer['paths'] = G.dijkstra(digraph, station)
+        # TODO: Llame a la ejecucion de Dijkstra desde la estacion
+        # base para calcular los caminos de costo minimo
+            analyzer['paths'] = dijkstra(analyzer['connections'], station)
             return True
         else:
             return False
-    except Exception as exp:
-        return exp
 # ___________________________________________________
 #  Funciones para consultas
 # ___________________________________________________
